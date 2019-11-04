@@ -17,10 +17,10 @@ To install the stack you will need the following
 
 1. You create a github repository to manage prow config files (config.yaml, plugins.yaml and job-config/*.yaml)
 2. You create a github repository to manage the tekton pipelines (tasks/*.yaml, pipelines/*.yaml)
-3. The stack deploys prow in the kubernetes cluster using helm
-4. The stack deploys tekton in the kubernetes cluster using helm
-5. You configure the `config-updater` plugin to keep the prow configuration in sync with the github repository created in 1
-6. You setup a tekton pipeline and a prow job to keep the tektons tasks and pipelines in sync with the github repository created in 2
+3. You deploy prow in the kubernetes cluster using helm
+4. You deploy tekton in the kubernetes cluster using helm
+5. You configure the _config-updater_ plugin to keep prow configuration in sync with the repository created in 1
+6. You setup a tekton pipeline and a prow job to keep the tekton resource in sync with the repository created in 2
 
 All this is explained in the following section
 
@@ -53,3 +53,31 @@ Click the _New_ button.
 Pick a name, create it either public or private, and hit the _Create repository_ button.
 
 I called mine _tekton-config_ but you can choose any name you want.
+
+### Deploy prow using helm
+
+This repository contains a helm chart to easily deploy prow.
+
+You will have to clone this repository as the helm chart is not distributed over a helm repository (yet).
+
+Once the repository is cloned, run the following command :
+
+`helm upgrade --install prow --namespace prow ./helm/prow --set-file config=./helm/prow/config/config.yaml --set-file plugins=./helm/prow/config/plugins.yaml`
+
+This will deploy prow in the prow kubernetes namespace with default configuration.
+
+See ./helm/prow/readme.md for the list of what can be customized in the chart.
+
+### Deploy tekton using helm
+
+This repository contains a helm chart to easily deploy tekton.
+
+You will have to clone this repository as the helm chart is not distributed over a helm repository (yet).
+
+Once the repository is cloned, run the following command :
+
+`helm upgrade --install tekton --namespace tekton ./helm/tekton`
+
+This will deploy tekton in the tekton kubernetes namespace with default configuration.
+
+See ./helm/tekton/readme.md for the list of what can be customized in the chart.

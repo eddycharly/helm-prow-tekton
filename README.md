@@ -15,7 +15,7 @@ To install the stack you will need the following
 
 ## How it works
 
-1. You create a github repository to manage the prow config files (config.yaml, plugins.yaml and job-config/*.yaml)
+1. You create a github repository to manage prow config files (config.yaml, plugins.yaml and job-config/*.yaml)
 2. You create a github repository to manage the tekton pipelines (tasks/*.yaml, pipelines/*.yaml)
 3. The stack deploys prow in the kubernetes cluster using helm
 4. The stack deploys tekton in the kubernetes cluster using helm
@@ -26,4 +26,12 @@ All this is explained in the following section
 
 ## Step by step deployment and configuration guide
 
-TODO
+### Create a github repository to manage prow config files
+
+In your github account, create a repository for storing your prow configuration files.
+
+![New repository](images/create-repository-1.png)
+
+![New repository](images/create-repository-2.png)
+
+I called mine `prow-config` but you can choose any name you want.

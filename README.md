@@ -30,8 +30,8 @@ All this is explained in the following section
 
 In your github account, create a repository for storing your prow configuration files.
 
-![New repository](images/create-repository-1.png)
+![New repository](images/create-repo-1.png)
 
-![New repository](images/create-repository-2.png)
+![New repository](images/create-repo-2.png)
 
 I called mine `prow-config` but you can choose any name you want.

@@ -39,3 +39,17 @@ Click the _New_ button.
 Pick a name, create it either public or private, and hit the _Create repository_ button.
 
 I called mine _prow-config_ but you can choose any name you want.
+
+### Create a github repository to manage prow pipelines and tasks
+
+In your github account, create a repository for storing your tekton tasks and pipelines.
+
+![New repository](images/create-repo-1.png)
+
+Click the _New_ button.
+
+![New repository](images/create-repo-3.png)
+
+Pick a name, create it either public or private, and hit the _Create repository_ button.
+
+I called mine _tekton-config_ but you can choose any name you want.

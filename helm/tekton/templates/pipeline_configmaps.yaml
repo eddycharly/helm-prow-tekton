@@ -1,0 +1,36 @@
+apiVersion: v1
+data: null
+kind: ConfigMap
+metadata:
+  name: config-artifact-bucket
+data:
+{{ .Values.config.artifactBucket | toYaml | indent 2 }}
+---
+apiVersion: v1
+data: null
+kind: ConfigMap
+metadata:
+  name: config-artifact-pvc
+data:
+{{ .Values.config.artifactPvc | toYaml | indent 2 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-defaults
+data:
+{{ .Values.config.defaults | toYaml | indent 2 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-logging
+data:
+{{ .Values.config.logging | toYaml | indent 2 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-observability
+data:
+{{ .Values.config.observability | toYaml | indent 2 }}

@@ -1,0 +1,28 @@
+{{- if .Values.deploy.dashboard.tasks }}
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  labels:
+    app: webhooks-extension-sink
+  name: webhooks-extension-sink
+spec:
+  template:
+    spec:
+      containers:
+        - image: gcr.io/tekton-releases/github.com/tektoncd/experimental/webhooks-extension/cmd/sink@sha256:97fdf2fd32e2dbdf828b09bb2445b55050a7ac615b434bae6849bd27a51cb2e6
+          env:
+            - name: INSTALLED_NAMESPACE
+              value: tekton-pipelines
+            - name: SERVICEACCOUNT
+              value: tekton-webhooks-extension
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /liveness
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /readiness
+      serviceAccountName: tekton-webhooks-extension
+{{- end }}

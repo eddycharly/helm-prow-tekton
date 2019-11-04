@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: webhooks-extension
+  name: webhooks-extension
+spec:
+  replicas: {{ .Values.replicas.dashboardWebhook }}
+  selector:
+    matchLabels:
+      app: webhooks-extension
+  template:
+    metadata:
+      labels:
+        app: webhooks-extension
+    spec:
+      containers:
+        - name: webhooks-extension
+          image: '{{ .Values.images.dashboardWebhook.repository }}:{{ .Values.images.dashboardWebhook.tag }}'
+          env:
+            - name: PORT
+              value: '8080'
+            - name: INSTALLED_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: DOCKER_REGISTRY_LOCATION
+              value: DOCKER_REPO
+            - name: WEB_RESOURCES_DIR
+              value: web
+            - name: TRIGGERS_PROTOTYPE_INGRESS_CERTIFICATE_SECRET_NAME
+              value: ''
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /liveness
+              port: 8080
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 8080
+      serviceAccountName: tekton-webhooks-extension

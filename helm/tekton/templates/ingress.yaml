@@ -1,0 +1,16 @@
+{{- if .Values.ingress }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tekton
+  annotations:
+{{ .Values.ingress.annotations | toYaml | indent 4 }}
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - backend:
+              serviceName: tekton-dashboard
+              servicePort: 9097
+{{- end }}

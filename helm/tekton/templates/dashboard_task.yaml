@@ -1,0 +1,35 @@
+{{- if .Values.deploy.dashboard.tasks }}
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: pipeline0-task
+spec:
+  inputs:
+    params:
+      - default: /workspace/git-source
+        description: The path to the resource files to apply
+        name: pathToResourceFiles
+        type: string
+      - default: .
+        description: The directory from which resources are to be applied
+        name: apply-directory
+        type: string
+      - default: tekton-pipelines
+        description: The namespace in which to create the resources being imported
+        name: target-namespace
+        type: string
+    resources:
+      - name: git-source
+        type: git
+  steps:
+    - args:
+        - apply
+        - -f
+        - $(inputs.params.pathToResourceFiles)/$(inputs.params.apply-directory)
+        - -n
+        - $(inputs.params.target-namespace)
+      command:
+        - kubectl
+      image: lachlanevenson/k8s-kubectl:latest
+      name: kubectl-apply
+{{- end }}

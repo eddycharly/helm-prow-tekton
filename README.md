@@ -54,6 +54,37 @@ Pick a name, create it either public or private, and hit the _Create repository_
 
 I called mine _tekton-config_ but you can choose any name you want.
 
+### Create the secrets need for prow
+
+Before deploying prow, you need to create configure some access informations for prow to be allowed to connect to your github account.
+
+First, create a github account, then create an oauth token for it.
+Do not use your own github account as prow will ignore things done by itself, if you use your own account, chances are that it will ignore eveything you do.
+
+![New repository](images/create-personal-token-1.png)
+
+In the new github account profile click on the _Settings_ item.
+
+![New repository](images/create-personal-token-2.png)
+
+Then click on the _Generate new token_ button.
+
+![New repository](images/create-personal-token-3.png)
+
+Fill in the form and click on the _Generate_ button.
+
+![New repository](images/create-personal-token-4.png)
+
+Note the token somewhere, you will need it later.
+
+In order to use github webhooks you will need to create another secret.
+
+Run the command `openssl rand -hex 32` and note the result, you will need it later.
+
+You will also need to create a secret to be used as a deck cookie.
+
+Run the command `openssl rand -base64 32` and note the result, you will need it later.
+
 ### Deploy prow using helm
 
 This repository contains a helm chart to easily deploy prow.

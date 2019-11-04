@@ -1,0 +1,50 @@
+images:
+  crier:
+    repository: gcr.io/k8s-prow/crier
+    tag: latest
+  deck:
+    repository: gcr.io/k8s-prow/deck
+    tag: latest
+  hook:
+    repository: gcr.io/k8s-prow/hook
+    tag: latest
+  horologium:
+    repository: gcr.io/k8s-prow/horologium
+    tag: latest
+  needsRebase:
+    repository: gcr.io/k8s-prow/needs-rebase
+    tag: latest
+  pipeline:
+    repository: gcr.io/k8s-prow/pipeline
+    tag: latest
+  plank:
+    repository: gcr.io/k8s-prow/plank
+    tag: latest
+  sinker:
+    repository: gcr.io/k8s-prow/sinker
+    tag: latest
+  tide:
+    repository: gcr.io/k8s-prow/tide
+    tag: latest
+  tot:
+    repository: gcr.io/k8s-prow/tot
+    tag: latest
+# status-reconcilier
+# grandmatriarch
+# ghproxy
+# boskos
+replicas:
+  crier: 1
+  deck: 1
+  hook: 1
+ingress: {}
+deck:
+  cookieSecret:
+github:
+  hmacToken:
+  oauthToken:
+  oauthConfig: {}
+unsplash:
+  apiKey:
+config: {}
+plugins: {}

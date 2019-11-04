@@ -1,0 +1,20 @@
+{{- if .Values.ingress }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: prow
+  annotations:
+{{ .Values.ingress.annotations | toYaml | indent 4 }}
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - backend:
+              serviceName: deck
+              servicePort: 80
+          - backend:
+              serviceName: hook
+              servicePort: 8888
+            path: /hook
+{{- end }}

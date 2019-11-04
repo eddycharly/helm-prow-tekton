@@ -1,0 +1,49 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  labels:
+    app: tot
+  name: tot-storage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tot
+  labels:
+    app: tot
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: tot
+  template:
+    metadata:
+      labels:
+        app: tot
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: tot
+          image: '{{ .Values.images.tot.repository }}:{{ .Values.images.tot.tag }}'
+          imagePullPolicy: Always
+          args:
+            - -storage=/store/tot.json
+            - -fallback
+          ports:
+            - name: http
+              containerPort: 8888
+          volumeMounts:
+            - mountPath: /store
+              name: tot-volume
+      volumes:
+        - name: tot-volume
+          persistentVolumeClaim:
+            claimName: tot-storage

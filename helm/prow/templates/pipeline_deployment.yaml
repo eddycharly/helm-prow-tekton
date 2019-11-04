@@ -1,0 +1,39 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: prow-pipeline
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: prow-pipeline
+  template:
+    metadata:
+      labels:
+        app: prow-pipeline
+    spec:
+      serviceAccountName: prow-pipeline
+      containers:
+        - name: pipeline
+          image: '{{ .Values.images.pipeline.repository }}:{{ .Values.images.pipeline.tag }}'
+          args:
+            - --all-contexts
+            - --config=/etc/prow-config/config.yaml
+            # - --build-cluster=/etc/build-cluster/cluster
+          volumeMounts:
+            - mountPath: /etc/prow-config
+              name: prow-config
+              readOnly: true
+            # - mountPath: /etc/build-cluster
+            #   name: build-cluster
+            #   readOnly: true
+      volumes:
+        - name: prow-config
+          configMap:
+            name: config
+        # - name: build-cluster
+        #   secret:
+        #     defaultMode: 420
+        #     secretName: build-cluster

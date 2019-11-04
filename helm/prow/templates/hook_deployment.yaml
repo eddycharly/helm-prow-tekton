@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hook
+  labels:
+    app: hook
+spec:
+  replicas: {{ .Values.replicas.hook }}
+  selector:
+    matchLabels:
+      app: hook
+  template:
+    metadata:
+      labels:
+        app: hook
+      annotations:
+        checksum/config: {{ .Values.config | sha256sum }}
+    spec:
+      serviceAccountName: hook
+      terminationGracePeriodSeconds: 180
+      containers:
+        - name: hook
+          image: '{{ .Values.images.hook.repository }}:{{ .Values.images.hook.tag }}'
+          imagePullPolicy: Always
+          args:
+            - --dry-run=false
+            - --config-path=/etc/config/config.yaml
+            - --job-config-path=/etc/job-config
+            - --github-endpoint=https://api.github.com
+            # - --slack-token-file=/etc/slack/token
+          ports:
+            - name: http
+              containerPort: 8888
+          volumeMounts:
+            - name: hmac
+              mountPath: /etc/webhook
+              readOnly: true
+            - name: oauth
+              mountPath: /etc/github
+              readOnly: true
+            - name: config
+              mountPath: /etc/config
+              readOnly: true
+            - name: plugins
+              mountPath: /etc/plugins
+              readOnly: true
+            - name: unsplash-api
+              mountPath: /etc/unsplash-api
+              readOnly: true
+            - name: job-config
+              mountPath: /etc/job-config
+              readOnly: true
+            # - name: slack
+            #   mountPath: /etc/slack
+            # - name: cat-api
+            #   mountPath: /etc/cat-api
+            #   readOnly: true
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8081
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /healthz/ready
+              port: 8081
+            initialDelaySeconds: 10
+            periodSeconds: 3
+            timeoutSeconds: 600
+      volumes:
+        - name: hmac
+          secret:
+            secretName: github-hmac-token
+        - name: oauth
+          secret:
+            secretName: github-oauth-token
+        - name: config
+          configMap:
+            name: config
+        - name: plugins
+          configMap:
+            name: plugins
+        - name: unsplash-api
+          secret:
+            secretName: unsplash-api-key
+        - name: job-config
+          configMap:
+            name: job-config
+        # - name: slack
+        #   secret:
+        #     secretName: slack-token
+        # - name: cat-api
+        #   configMap:
+        #     name: cat-api-key

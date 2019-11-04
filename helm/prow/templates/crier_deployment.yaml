@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crier
+  labels:
+    app: crier
+spec:
+  replicas: {{ .Values.replicas.crier }}
+  selector:
+    matchLabels:
+      app: crier
+  template:
+    metadata:
+      labels:
+        app: crier
+    spec:
+      serviceAccountName: crier
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: crier
+          image: '{{ .Values.images.crier.repository }}:{{ .Values.images.crier.tag }}'
+          args:
+            - --config-path=/etc/config/config.yaml
+            - --job-config-path=/etc/job-config
+            - --github-endpoint=https://api.github.com
+            - --github-workers=1
+          volumeMounts:
+            - name: config
+              mountPath: /etc/config
+              readOnly: true
+            - name: job-config
+              mountPath: /etc/job-config
+              readOnly: true
+            - name: oauth
+              mountPath: /etc/github
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: config
+        - name: job-config
+          configMap:
+            name: job-config
+        - name: oauth
+          secret:
+            secretName: github-oauth-token

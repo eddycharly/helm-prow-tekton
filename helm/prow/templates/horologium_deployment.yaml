@@ -16,6 +16,8 @@ spec:
       labels:
         app: horologium
     spec:
+      nodeSelector:
+{{ toYaml .Values.nodeSelector.horologium | indent 8 }}
       serviceAccountName: horologium
       terminationGracePeriodSeconds: 30
       containers:

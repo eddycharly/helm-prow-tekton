@@ -16,6 +16,8 @@ spec:
       labels:
         app: plank
     spec:
+      nodeSelector:
+{{ toYaml .Values.nodeSelector.plank | indent 8 }}
       serviceAccountName: plank
       containers:
         - name: plank

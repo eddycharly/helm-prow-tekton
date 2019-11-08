@@ -14,6 +14,8 @@ spec:
       labels:
         app: needs-rebase
     spec:
+      nodeSelector:
+{{ toYaml .Values.nodeSelector.needsRebase | indent 8 }}
       terminationGracePeriodSeconds: 180
       containers:
         - name: needs-rebase

@@ -37,14 +37,26 @@ replicas:
   crier: 1
   deck: 1
   hook: 1
+nodeSelector:
+  crier: {}
+  deck: {}
+  hook: {}
+  horologium: {}
+  needsRebase: {}
+  pipeline: {}
+  plank: {}
+  sinker: {}
+  tide: {}
+  tot: {}
 ingress: {}
 deck:
-  cookieSecret:
+  cookieSecret: TBD
 github:
-  hmacToken:
-  oauthToken:
+  hmacToken: TBD
+  oauthToken: TBD
   oauthConfig: {}
 unsplash:
-  apiKey:
+  apiKey: TBD
 config: {}
 plugins: {}
+jobConfigPath: TBD

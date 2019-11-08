@@ -16,6 +16,8 @@ spec:
       labels:
         app: tide
     spec:
+      nodeSelector:
+{{ toYaml .Values.nodeSelector.tide | indent 8 }}
       serviceAccountName: tide
       containers:
         - name: tide

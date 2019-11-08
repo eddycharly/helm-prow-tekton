@@ -1,16 +1,3 @@
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  labels:
-    app: tot
-  name: tot-storage
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -29,6 +16,8 @@ spec:
       labels:
         app: tot
     spec:
+      nodeSelector:
+{{ toYaml .Values.nodeSelector.tot | indent 8 }}
       terminationGracePeriodSeconds: 30
       containers:
         - name: tot

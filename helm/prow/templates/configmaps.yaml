@@ -3,20 +3,22 @@ kind: ConfigMap
 metadata:
   name: config
 data:
-  config.yaml: |
-{{ .Values.config | toYaml | indent 4 }}
+  config.yaml:
+{{- .Values.config | toYaml | indent 2 }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: plugins
 data:
-  plugins.yaml: |
-{{ .Values.plugins | toYaml | indent 4 }}
+  plugins.yaml:
+{{- .Values.plugins | toYaml | indent 2 }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: job-config
 data:
-{{ .Values.jobConfig | toYaml | indent 2 }}
+{{- range $path, $bytes := .Files.Glob (print .Values.jobConfigPath "/*.yaml") }}
+  {{ base $path }}: {{- $.Files.Get $path | toYaml | indent 2 }}
+{{- end }}

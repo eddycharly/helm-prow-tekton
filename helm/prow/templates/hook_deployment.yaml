@@ -16,6 +16,8 @@ spec:
       annotations:
         checksum/config: {{ .Values.config | sha256sum }}
     spec:
+      nodeSelector:
+{{ toYaml .Values.nodeSelector.hook | indent 8 }}
       serviceAccountName: hook
       terminationGracePeriodSeconds: 180
       containers:

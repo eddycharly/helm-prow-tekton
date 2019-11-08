@@ -14,6 +14,8 @@ spec:
       labels:
         app: deck
     spec:
+      nodeSelector:
+{{ toYaml .Values.nodeSelector.deck | indent 8 }}
       serviceAccountName: deck
       terminationGracePeriodSeconds: 30
       containers:

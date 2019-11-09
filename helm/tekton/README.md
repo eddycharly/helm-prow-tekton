@@ -46,7 +46,7 @@ Source code can be found [here](https://github.com/eddycharly/helm-prow-tekton/h
 | dashboard.replicas | int | Dashboard replicas | `1` |
 | dashboardWebhook.enabled | bool | Enable dashboard webhook | `true` |
 | dashboardWebhook.image.repository | string | Dashboard webhook docker image repository | `"gcr.io/tekton-releases/github.com/tektoncd/experimental/webhooks-extension/cmd/extension@sha256"` |
-| dashboardWebhook.image.tag | string |  | `"db812c6ef08e84870b3ed294b00ac5bdabbc67efca177786d6f307150674f2a2"` |
+| dashboardWebhook.image.tag | string | Dashboard webhook docker image tag | `"db812c6ef08e84870b3ed294b00ac5bdabbc67efca177786d6f307150674f2a2"` |
 | dashboardWebhook.nodeSelector | object | Dashboard webhook node selector | `{}` |
 | dashboardWebhook.replicas | int | Dashboard webhook replicas | `1` |
 | pipeline.config.artifactBucket | object | Pipeline configuration for artifact bucket (see https://github.com/tektoncd/pipeline/blob/master/docs/install.md) | `{}` |

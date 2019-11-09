@@ -138,7 +138,7 @@ dashboardWebhook:
   image:
     # dashboardWebhook.image.repository -- Dashboard webhook docker image repository
     repository: gcr.io/tekton-releases/github.com/tektoncd/experimental/webhooks-extension/cmd/extension@sha256
-    # dashboardWebhook.image.tags -- Dashboard webhook docker image tag
+    # dashboardWebhook.image.tag -- Dashboard webhook docker image tag
     tag: db812c6ef08e84870b3ed294b00ac5bdabbc67efca177786d6f307150674f2a2
 
   # dashboardWebhook.replicas -- Dashboard webhook replicas

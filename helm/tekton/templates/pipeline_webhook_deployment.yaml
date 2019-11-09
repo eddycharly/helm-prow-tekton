@@ -1,3 +1,4 @@
+{{- if .Values.pipelineWebhook.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,7 +7,7 @@ metadata:
     app.kubernetes.io/name: tekton-pipelines
   name: tekton-pipelines-webhook
 spec:
-  replicas: {{ .Values.replicas.pipelineWebhook }}
+  replicas: {{ .Values.pipelineWebhook.replicas }}
   selector:
     matchLabels:
       app: tekton-pipelines-webhook
@@ -20,11 +21,11 @@ spec:
         app.kubernetes.io/name: tekton-pipelines
     spec:
       nodeSelector:
-{{ toYaml .Values.nodeSelector.pipelineWebhook | indent 8 }}
+{{ toYaml .Values.pipelineWebhook.nodeSelector | indent 8 }}
       serviceAccountName: tekton-pipelines-controller
       containers:
         - name: webhook
-          image: '{{ .Values.images.pipelineWebhook.repository }}:{{ .Values.images.pipelineWebhook.tag }}'
+          image: '{{ .Values.pipelineWebhook.image.repository }}:{{ .Values.pipelineWebhook.image.tag }}'
           env:
             - name: SYSTEM_NAMESPACE
               valueFrom:
@@ -37,3 +38,4 @@ spec:
         - name: config-logging
           configMap:
             name: config-logging
+{{- end }}

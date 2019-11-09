@@ -1,3 +1,4 @@
+{{- if .Values.dashboardWebhook.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -5,7 +6,7 @@ metadata:
     app: webhooks-extension
   name: webhooks-extension
 spec:
-  replicas: {{ .Values.replicas.dashboardWebhook }}
+  replicas: {{ .Values.dashboardWebhook.replicas }}
   selector:
     matchLabels:
       app: webhooks-extension
@@ -15,11 +16,11 @@ spec:
         app: webhooks-extension
     spec:
       nodeSelector:
-{{ toYaml .Values.nodeSelector.dashboardWebhook | indent 8 }}
+{{ toYaml .Values.dashboardWebhook.nodeSelector | indent 8 }}
       serviceAccountName: tekton-webhooks-extension
       containers:
         - name: webhooks-extension
-          image: '{{ .Values.images.dashboardWebhook.repository }}:{{ .Values.images.dashboardWebhook.tag }}'
+          image: '{{ .Values.dashboardWebhook.image.repository }}:{{ .Values.dashboardWebhook.image.tag }}'
           env:
             - name: PORT
               value: '8080'
@@ -44,3 +45,4 @@ spec:
             httpGet:
               path: /readiness
               port: 8080
+{{- end }}

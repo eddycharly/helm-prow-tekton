@@ -1,3 +1,4 @@
+{{- if .Values.dashboard.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -5,7 +6,7 @@ metadata:
     app: tekton-dashboard
   name: tekton-dashboard
 spec:
-  replicas: {{ .Values.replicas.dashboard }}
+  replicas: {{ .Values.dashboard.replicas }}
   selector:
     matchLabels:
       app: tekton-dashboard
@@ -16,11 +17,11 @@ spec:
       name: tekton-dashboard
     spec:
       nodeSelector:
-{{ toYaml .Values.nodeSelector.dashboard | indent 8 }}
+{{ toYaml .Values.dashboard.nodeSelector | indent 8 }}
       serviceAccountName: tekton-dashboard
       containers:
         - name: tekton-dashboard
-          image: '{{ .Values.images.dashboard.repository }}:{{ .Values.images.dashboard.tag }}'
+          image: '{{ .Values.dashboard.image.repository }}:{{ .Values.dashboard.image.tag }}'
           env:
             - name: PORT
               value: '9097'
@@ -43,3 +44,4 @@ spec:
               path: /readiness
               port: 9097
           resources: null
+{{- end }}

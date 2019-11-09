@@ -1,13 +1,13 @@
-{{- if .Values.ingress }}
+{{- if .Values.dashboard.ingress.enabled }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: tekton
   annotations:
-{{ .Values.ingress.annotations | toYaml | indent 4 }}
+{{ .Values.dashboard.ingress.annotations | toYaml | indent 4 }}
 spec:
   rules:
-    - host: {{ .Values.ingress.host }}
+    - host: {{ .Values.dashboard.ingress.host }}
       http:
         paths:
           - backend:

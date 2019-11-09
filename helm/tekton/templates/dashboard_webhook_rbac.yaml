@@ -1,3 +1,4 @@
+{{- if .Values.dashboardWebhook.enabled }}
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -139,3 +140,4 @@ subjects:
   - kind: ServiceAccount
     name: tekton-webhooks-extension
     namespace: {{ .Release.Namespace }}
+{{- end }}

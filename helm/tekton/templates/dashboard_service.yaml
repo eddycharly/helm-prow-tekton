@@ -1,3 +1,4 @@
+{{- if .Values.dashboard.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -12,3 +13,4 @@ spec:
       targetPort: 9097
   selector:
     app: tekton-dashboard
+{{- end }}

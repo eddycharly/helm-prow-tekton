@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: tekton-pipelines
   name: tekton-pipelines-controller
 spec:
-  replicas: {{ .Values.replicas.pipeline }}
+  replicas: {{ .Values.pipeline.replicas }}
   selector:
     matchLabels:
       app: tekton-pipelines-controller
@@ -20,16 +20,16 @@ spec:
         app.kubernetes.io/name: tekton-pipelines
     spec:
       nodeSelector:
-{{ toYaml .Values.nodeSelector.pipeline | indent 8 }}
+{{ toYaml .Values.pipeline.nodeSelector | indent 8 }}
       serviceAccountName: tekton-pipelines-controller
       containers:
         - name: tekton-pipelines-controller
-          image: '{{ .Values.images.pipeline.repository }}:{{ .Values.images.pipeline.tag }}'
+          image: '{{ .Values.pipeline.image.repository }}:{{ .Values.pipeline.image.tag }}'
           args:
             - -logtostderr
             - -stderrthreshold
             - INFO
-{{- range $key, $value := .Values.pipelineUtils }}
+{{- range $key, $value := .Values.pipeline.helpers }}
             - -{{ $key }}
             - '{{ $value.repository }}:{{ $value.tag }}'
 {{- end }}

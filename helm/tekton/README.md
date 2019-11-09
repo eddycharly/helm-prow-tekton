@@ -37,15 +37,15 @@ Source code can be found [here](https://github.com/eddycharly/helm-prow-tekton/h
 | Key | Type | Description | Default |
 |-----|------|-------------|---------|
 | dashboard.enabled | bool | Enable dashboard | `true` |
-| dashboard.image.repository | string | Dashboard docker image tag | `"gcr.io/tekton-releases/github.com/tektoncd/dashboard/cmd/dashboard@sha256"` |
-| dashboard.image.tag | string |  | `"b985769636204f2d736e20dbafa27ff68ba07c218445925da094a2dd8ab07a6a"` |
+| dashboard.image.repository | string | Dashboard docker image repository | `"gcr.io/tekton-releases/github.com/tektoncd/dashboard/cmd/dashboard@sha256"` |
+| dashboard.image.tag | string | Dashboard docker image tag | `"b985769636204f2d736e20dbafa27ff68ba07c218445925da094a2dd8ab07a6a"` |
 | dashboard.ingress.annotations | object | Dashboard ingress annotations | `{}` |
 | dashboard.ingress.enabled | bool | Enable dashboard ingress | `false` |
 | dashboard.ingress.host | string | (string) Dashboard ingress host name | `"example.com"` |
 | dashboard.nodeSelector | object | Dashboard node selector | `{}` |
 | dashboard.replicas | int | Dashboard replicas | `1` |
 | dashboardWebhook.enabled | bool | Enable dashboard webhook | `true` |
-| dashboardWebhook.image.repository | string | Dashboard webhook docker image tag | `"gcr.io/tekton-releases/github.com/tektoncd/experimental/webhooks-extension/cmd/extension@sha256"` |
+| dashboardWebhook.image.repository | string | Dashboard webhook docker image repository | `"gcr.io/tekton-releases/github.com/tektoncd/experimental/webhooks-extension/cmd/extension@sha256"` |
 | dashboardWebhook.image.tag | string |  | `"db812c6ef08e84870b3ed294b00ac5bdabbc67efca177786d6f307150674f2a2"` |
 | dashboardWebhook.nodeSelector | object | Dashboard webhook node selector | `{}` |
 | dashboardWebhook.replicas | int | Dashboard webhook replicas | `1` |
@@ -74,13 +74,13 @@ Source code can be found [here](https://github.com/eddycharly/helm-prow-tekton/h
 | pipeline.helpers.nop-image.tag | string |  | `"b77955ba2711e1ba30ab48670bcafd725ddc01a105d173256e158053914dc42c"` |
 | pipeline.helpers.pr-image.repository | string |  | `"gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/pullrequest-init@sha256"` |
 | pipeline.helpers.pr-image.tag | string |  | `"26a181a89c00ab840599508e905d1cfeed5db2b4ea41fbcc63c22979389e4a46"` |
-| pipeline.image.repository | string | Pipeline controller docker image tag | `"gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller@sha256"` |
-| pipeline.image.tag | string |  | `"72a2bda21b5bc23550e94fdf7cee8a6e5bd82601f5d81a6237fc2b8c42321a59"` |
+| pipeline.image.repository | string | Pipeline controller docker image repository | `"gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller@sha256"` |
+| pipeline.image.tag | string | Pipeline controller docker image tag | `"72a2bda21b5bc23550e94fdf7cee8a6e5bd82601f5d81a6237fc2b8c42321a59"` |
 | pipeline.nodeSelector | object | Pipeline controller node selector | `{}` |
 | pipeline.replicas | int | Pipeline controller replicas | `1` |
 | pipelineWebhook.enabled | bool | Enable pipeline webhook | `true` |
-| pipelineWebhook.image.repository | string | Pipeline webhook docker image tag | `"gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook@sha256"` |
-| pipelineWebhook.image.tag | string |  | `"1d6336f2748cb8e5c19b17191a54c6adbbc77e2d1c60818f93282ec482bb2957"` |
+| pipelineWebhook.image.repository | string | Pipeline webhook docker image repository | `"gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook@sha256"` |
+| pipelineWebhook.image.tag | string | Pipeline webhook docker image tag | `"1d6336f2748cb8e5c19b17191a54c6adbbc77e2d1c60818f93282ec482bb2957"` |
 | pipelineWebhook.nodeSelector | object | Pipeline webhook node selector | `{}` |
 | pipelineWebhook.replicas | int | Pipeline webhook replicas | `1` |
 

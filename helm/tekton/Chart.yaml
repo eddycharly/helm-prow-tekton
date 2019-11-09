@@ -9,3 +9,11 @@ keywords:
 maintainers:
   - name: eddycharly
     email: charles.breteche@agriconomie.com
+description: |
+  ## Installation
+
+  `helm upgrade --install my-tekton --namespace tekton ./tekton`
+
+  This will install tekton pipelines and tekton dashboard in the tekton namespace.
+
+  You can override default values, see the section **Chart Values** below.

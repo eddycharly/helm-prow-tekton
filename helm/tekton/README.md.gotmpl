@@ -1,0 +1,21 @@
+{{ define "chart.valuesTable" }}
+| Key | Type | Description | Default |
+|-----|------|-------------|---------|
+{{- range .Values }}
+| {{ .Key }} | {{ .Type }} | {{ .Description }} | {{ .Default }} |
+{{- end }}
+{{ end }}
+
+{{ template "chart.header" . }}
+
+{{ template "chart.description" . }}
+
+{{ template "chart.versionLine" . }}
+
+{{ template "chart.sourceLinkLine" . }}
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
+
+Specify each parameter using the --set key=value[,key=value] argument to helm install.

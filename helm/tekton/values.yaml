@@ -52,7 +52,17 @@ nodeSelector:
   dashboardWebhook: {}
   pipeline: {}
   pipelineWebhook: {}
-ingress: {}
+
+ingress:
+  # Enable ingress resource
+  enabled: false
+
+  # ingress.annotations -- Ingress resource annotations
+  # annotations: {}
+
+  # ingress.host -- Ingress resource host
+  # host: xxx.yyy.zzz
+
 deploy:
   dashboard:
     tasks: false
@@ -61,7 +71,7 @@ deploy:
 config:
   artifactBucket:
   artifactPvc:
-  defaults:
+  defaults: |
     _example: |
       ################################
       #                              #
@@ -85,7 +95,7 @@ config:
       # default-service-account contains the default service account name
       # to use for TaskRun and PipelineRun, if none is specified.
       default-service-account: "default"
-  logging:
+  logging: |
     loglevel.controller: info
     loglevel.webhook: info
     zap-logger-config: |
@@ -113,7 +123,7 @@ config:
           "callerEncoder": ""
         }
       }
-  observability:
+  observability: |
     _example: |
       ################################
       #                              #

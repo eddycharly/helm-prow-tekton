@@ -3,15 +3,29 @@
 tekton
 ======
 
+## Description
+
+This chart bootstraps installation of [tekton pipeline](https://github.com/tektoncd/pipeline).
+
+It optionnaly can install the following tekton additionnal components :
+  - tekton pipeline webhook
+  - tekton dashboard (see [here](https://github.com/tektoncd/dashboard))
+  - tekton dashboard webhook extensions
+
+
 ## Installation
 
 `helm upgrade --install my-tekton --namespace tekton ./tekton`
 
 This will install tekton pipelines and tekton dashboard in the tekton namespace.
 
-You can override default values, see the section **Chart Values** below.
+You can override default values, see section **Chart Values** below.
+
+## Version
 
 Current chart version is `0.8.0`
+
+## Source
 
 Source code can be found [here](https://github.com/eddycharly/helm-prow-tekton/helm/tekton)
 

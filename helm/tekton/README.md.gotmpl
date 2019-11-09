@@ -8,9 +8,23 @@
 
 {{ template "chart.header" . }}
 
+## Description
+
 {{ template "chart.description" . }}
 
+## Installation
+
+`helm upgrade --install my-tekton --namespace tekton ./tekton`
+
+This will install tekton pipelines and tekton dashboard in the tekton namespace.
+
+You can override default values, see section **Chart Values** below.
+
+## Version
+
 {{ template "chart.versionLine" . }}
+
+## Source
 
 {{ template "chart.sourceLinkLine" . }}
 

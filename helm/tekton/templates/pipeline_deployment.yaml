@@ -29,7 +29,7 @@ spec:
             - -logtostderr
             - -stderrthreshold
             - INFO
-{{- range $key, $value := .Values.pipeline.helpers }}
+{{- range $key, $value := .Values.pipeline.helperImages }}
             - -{{ $key }}
             - '{{ $value.repository }}:{{ $value.tag }}'
 {{- end }}

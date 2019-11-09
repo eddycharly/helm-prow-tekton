@@ -12,37 +12,65 @@ pipeline:
   # pipeline.nodeSelector -- Pipeline controller node selector
   nodeSelector: {}
 
-  # TODO : documentation
-  helpers:
+  helperImages:
+
     bash-noop-image:
+      # pipeline.helperImages.bash-noop-image.repository -- Pipeline controller bash-noop-image helper image repository
       repository: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/bash@sha256
+      # pipeline.helperImages.bash-noop-image.tag -- Pipeline controller bash-noop-image helper image tag
       tag: a96b5840cdeb2a6598a8566a8607b925732286a8fdf15147be3591b7c7fb41f7
+
     build-gcs-fetcher-image:
+      # pipeline.helperImages.build-gcs-fetcher-image.repository -- Pipeline controller build-gcs-fetcher-image helper image repository
       repository: gcr.io/tekton-releases/github.com/tektoncd/pipeline/vendor/github.com/googlecloudplatform/cloud-builders/gcs-fetcher/cmd/gcs-fetcher@sha256
+      # pipeline.helperImages.build-gcs-fetcher-image.tag -- Pipeline controller build-gcs-fetcher-image helper image tag
       tag: 5be2e14ed6b986198beca21a93af34e807586dcf9155babeca7f5971a2fa0311
+
     creds-image:
+      # pipeline.helperImages.creds-image.repository -- Pipeline controller creds-image helper image repository
       repository: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/creds-init@sha256
+      # pipeline.helperImages.creds-image.tag -- Pipeline controller creds-image helper image tag
       tag: 8f8c43a115984e90db3b0cb3fcd46e1699ec15515ca7d258571a44c7d76040ca
+
     entrypoint-image:
+      # pipeline.helperImages.entrypoint-image.repository -- Pipeline controller entrypoint-image helper image repository
       repository: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint@sha256
+      # pipeline.helperImages.entrypoint-image.tag -- Pipeline controller entrypoint-image helper image tag
       tag: 5c2a7261d923b8af29ad3be34a9c9a3abd1ed11a030ca1cc207293d203755ab4
+
     git-image:
+      # pipeline.helperImages.git-image.repository -- Pipeline controller git-image helper image repository
       repository: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init@sha256
+      # pipeline.helperImages.git-image.tag -- Pipeline controller git-image helper image tag
       tag: 00466e8ec7d8a289140893523d33261ba5006dfb1bd9b96aee2736fc739dba5a
+
     gsutil-image:
+      # pipeline.helperImages.gsutil-image.repository -- Pipeline controller gsutil-image helper image repository
       repository: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/gsutil@sha256
+      # pipeline.helperImages.gsutil-image.tag -- Pipeline controller gsutil-image helper image tag
       tag: 0130ec562b897c5929123d4e14cd3271cd58102f1f411f52cb6f415088bf5944
     imagedigest-exporter-image:
+      # pipeline.helperImages.imagedigest-exporter-image.repository -- Pipeline controller imagedigest-exporter-image helper image repository
       repository: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/imagedigestexporter@sha256
+      # pipeline.helperImages.imagedigest-exporter-image.tag -- Pipeline controller imagedigest-exporter-image helper image tag
       tag: 23e2de68c86de494aba98dabf02b175efc051827c52350bdd9a89f6a3d969ea9
+
     kubeconfig-writer-image:
+      # pipeline.helperImages.kubeconfig-writer-image.repository -- Pipeline controller kubeconfig-writer-image helper image repository
       repository: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/kubeconfigwriter@sha256
+      # pipeline.helperImages.kubeconfig-writer-image.tag -- Pipeline controller kubeconfig-writer-image helper image tag
       tag: 912d30334e63899f3875806b0633b5ddf3470d64fbd2333fc2c534afcfa9872d
+
     nop-image:
+      # pipeline.helperImages.nop-image.repository -- Pipeline controller nop-image helper image repository
       repository: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/nop@sha256
+      # pipeline.helperImages.nop-image.tag -- Pipeline controller nop-image helper image tag
       tag: b77955ba2711e1ba30ab48670bcafd725ddc01a105d173256e158053914dc42c
+      
     pr-image:
+      # pipeline.helperImages.pr-image.repository -- Pipeline controller pr-image helper image repository
       repository: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/pullrequest-init@sha256
+      # pipeline.helperImages.pr-image.tag -- Pipeline controller pr-image helper image tag
       tag: 26a181a89c00ab840599508e905d1cfeed5db2b4ea41fbcc63c22979389e4a46
 
   config:
@@ -127,7 +155,7 @@ dashboard:
     enabled: false
     # dashboard.ingress.annotations -- Dashboard ingress annotations
     annotations: {}
-    # dashboard.ingress.host -- (string) Dashboard ingress host name
+    # dashboard.ingress.host -- Dashboard ingress host name
     host: example.com
 
 dashboardWebhook:

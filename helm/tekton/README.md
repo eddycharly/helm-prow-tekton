@@ -19,7 +19,7 @@ It optionnaly can install the following tekton additionnal components :
 
 This will install tekton pipelines and tekton dashboard in the tekton namespace.
 
-You can override default values, see section **Chart Values** below.
+You can override default values, see [Chart Values](#chart-values) section.
 
 ## Version
 

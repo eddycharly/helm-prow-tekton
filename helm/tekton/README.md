@@ -12,13 +12,6 @@ Source code can be found [here](https://github.com/eddycharly/helm-prow-tekton/h
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config.artifactBucket | object | `{}` |  |
-| config.artifactPvc | object | `{}` |  |
-| config.defaults | object | `{}` |  |
-| config.logging."loglevel.controller" | string | `"info"` |  |
-| config.logging."loglevel.webhook" | string | `"info"` |  |
-| config.logging.zap-logger-config | string | `"{\n  \"level\": \"info\",\n  \"development\": false,\n  \"sampling\": {\n    \"initial\": 100,\n    \"thereafter\": 100\n  },\n  \"outputPaths\": [\"stdout\"],\n  \"errorOutputPaths\": [\"stderr\"],\n  \"encoding\": \"json\",\n  \"encoderConfig\": {\n    \"timeKey\": \"\",\n    \"levelKey\": \"level\",\n    \"nameKey\": \"logger\",\n    \"callerKey\": \"caller\",\n    \"messageKey\": \"msg\",\n    \"stacktraceKey\": \"stacktrace\",\n    \"lineEnding\": \"\",\n    \"levelEncoder\": \"\",\n    \"timeEncoder\": \"\",\n    \"durationEncoder\": \"\",\n    \"callerEncoder\": \"\"\n  }\n}\n"` |  |
-| config.observability | object | `{}` |  |
 | dashboard.enabled | bool | `true` | Enable dashboard |
 | dashboard.image.repository | string | `"gcr.io/tekton-releases/github.com/tektoncd/dashboard/cmd/dashboard@sha256"` | Dashboard docker image tag |
 | dashboard.image.tag | string | `"b985769636204f2d736e20dbafa27ff68ba07c218445925da094a2dd8ab07a6a"` |  |
@@ -32,6 +25,11 @@ Source code can be found [here](https://github.com/eddycharly/helm-prow-tekton/h
 | dashboardWebhook.image.tag | string | `"db812c6ef08e84870b3ed294b00ac5bdabbc67efca177786d6f307150674f2a2"` |  |
 | dashboardWebhook.nodeSelector | object | `{}` | Dashboard webhook node selector |
 | dashboardWebhook.replicas | int | `1` | Dashboard webhook replicas |
+| pipeline.config.artifactBucket | object | `{}` | Pipeline configuration for artifact bucket (see https://github.com/tektoncd/pipeline/blob/master/docs/install.md) |
+| pipeline.config.artifactPvc | object | `{}` | Pipeline configuration for artifact pvc (see https://github.com/tektoncd/pipeline/blob/master/docs/install.md) |
+| pipeline.config.defaults | object | `{}` | Pipeline configuration for default values (see https://github.com/tektoncd/pipeline/blob/master/docs/install.md) |
+| pipeline.config.logging | object | `{"loglevel.controller":"info","loglevel.webhook":"info","zap-logger-config":"{\n  \"level\": \"info\",\n  \"development\": false,\n  \"sampling\": {\n    \"initial\": 100,\n    \"thereafter\": 100\n  },\n  \"outputPaths\": [\"stdout\"],\n  \"errorOutputPaths\": [\"stderr\"],\n  \"encoding\": \"json\",\n  \"encoderConfig\": {\n    \"timeKey\": \"\",\n    \"levelKey\": \"level\",\n    \"nameKey\": \"logger\",\n    \"callerKey\": \"caller\",\n    \"messageKey\": \"msg\",\n    \"stacktraceKey\": \"stacktrace\",\n    \"lineEnding\": \"\",\n    \"levelEncoder\": \"\",\n    \"timeEncoder\": \"\",\n    \"durationEncoder\": \"\",\n    \"callerEncoder\": \"\"\n  }\n}\n"}` | Pipeline configuration for logging (see https://github.com/tektoncd/pipeline/blob/master/docs/install.md) |
+| pipeline.config.observability | object | `{}` | Pipeline configuration for observability (see https://github.com/tektoncd/pipeline/blob/master/docs/install.md) |
 | pipeline.helpers.bash-noop-image.repository | string | `"gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/bash@sha256"` |  |
 | pipeline.helpers.bash-noop-image.tag | string | `"a96b5840cdeb2a6598a8566a8607b925732286a8fdf15147be3591b7c7fb41f7"` |  |
 | pipeline.helpers.build-gcs-fetcher-image.repository | string | `"gcr.io/tekton-releases/github.com/tektoncd/pipeline/vendor/github.com/googlecloudplatform/cloud-builders/gcs-fetcher/cmd/gcs-fetcher@sha256"` |  |

@@ -45,6 +45,49 @@ pipeline:
       repository: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/pullrequest-init@sha256
       tag: 26a181a89c00ab840599508e905d1cfeed5db2b4ea41fbcc63c22979389e4a46
 
+  config:
+    # pipeline.config.artifactBucket -- Pipeline configuration for artifact bucket (see https://github.com/tektoncd/pipeline/blob/master/docs/install.md)
+    artifactBucket: {}
+
+    # pipeline.config.artifactPvc -- Pipeline configuration for artifact pvc (see https://github.com/tektoncd/pipeline/blob/master/docs/install.md)
+    artifactPvc: {}
+
+    # pipeline.config.defaults -- Pipeline configuration for default values (see https://github.com/tektoncd/pipeline/blob/master/docs/install.md)
+    defaults: {}
+
+    # pipeline.config.logging -- Pipeline configuration for logging (see https://github.com/tektoncd/pipeline/blob/master/docs/install.md)
+    logging:
+      loglevel.controller: info
+      loglevel.webhook: info
+      zap-logger-config: |
+        {
+          "level": "info",
+          "development": false,
+          "sampling": {
+            "initial": 100,
+            "thereafter": 100
+          },
+          "outputPaths": ["stdout"],
+          "errorOutputPaths": ["stderr"],
+          "encoding": "json",
+          "encoderConfig": {
+            "timeKey": "",
+            "levelKey": "level",
+            "nameKey": "logger",
+            "callerKey": "caller",
+            "messageKey": "msg",
+            "stacktraceKey": "stacktrace",
+            "lineEnding": "",
+            "levelEncoder": "",
+            "timeEncoder": "",
+            "durationEncoder": "",
+            "callerEncoder": ""
+          }
+        }
+
+    # pipeline.config.observability -- Pipeline configuration for observability (see https://github.com/tektoncd/pipeline/blob/master/docs/install.md)
+    observability: {}
+
 pipelineWebhook:
 
   # pipelineWebhook.enabled -- Enable pipeline webhook
@@ -103,37 +146,3 @@ dashboardWebhook:
 
   # dashboardWebhook.nodeSelector -- Dashboard webhook node selector
   nodeSelector: {}
-
-config:
-  artifactBucket: {}
-  artifactPvc: {}
-  defaults: {}
-  logging:
-    loglevel.controller: info
-    loglevel.webhook: info
-    zap-logger-config: |
-      {
-        "level": "info",
-        "development": false,
-        "sampling": {
-          "initial": 100,
-          "thereafter": 100
-        },
-        "outputPaths": ["stdout"],
-        "errorOutputPaths": ["stderr"],
-        "encoding": "json",
-        "encoderConfig": {
-          "timeKey": "",
-          "levelKey": "level",
-          "nameKey": "logger",
-          "callerKey": "caller",
-          "messageKey": "msg",
-          "stacktraceKey": "stacktrace",
-          "lineEnding": "",
-          "levelEncoder": "",
-          "timeEncoder": "",
-          "durationEncoder": "",
-          "callerEncoder": ""
-        }
-      }
-  observability: {}

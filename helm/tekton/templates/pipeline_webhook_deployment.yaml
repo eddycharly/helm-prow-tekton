@@ -19,6 +19,9 @@ spec:
         app.kubernetes.io/component: webhook-controller
         app.kubernetes.io/name: tekton-pipelines
     spec:
+      nodeSelector:
+{{ toYaml .Values.nodeSelector.pipelineWebhook | indent 8 }}
+      serviceAccountName: tekton-pipelines-controller
       containers:
         - name: webhook
           image: '{{ .Values.images.pipelineWebhook.repository }}:{{ .Values.images.pipelineWebhook.tag }}'
@@ -30,7 +33,6 @@ spec:
           volumeMounts:
             - mountPath: /etc/config-logging
               name: config-logging
-      serviceAccountName: tekton-pipelines-controller
       volumes:
         - name: config-logging
           configMap:

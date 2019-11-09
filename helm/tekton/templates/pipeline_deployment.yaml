@@ -19,6 +19,9 @@ spec:
         app.kubernetes.io/component: controller
         app.kubernetes.io/name: tekton-pipelines
     spec:
+      nodeSelector:
+{{ toYaml .Values.nodeSelector.pipeline | indent 8 }}
+      serviceAccountName: tekton-pipelines-controller
       containers:
         - name: tekton-pipelines-controller
           image: '{{ .Values.images.pipeline.repository }}:{{ .Values.images.pipeline.tag }}'
@@ -44,7 +47,6 @@ spec:
           volumeMounts:
             - mountPath: /etc/config-logging
               name: config-logging
-      serviceAccountName: tekton-pipelines-controller
       volumes:
         - name: config-logging
           configMap:

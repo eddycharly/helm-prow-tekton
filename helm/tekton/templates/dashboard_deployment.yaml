@@ -15,6 +15,9 @@ spec:
         app: tekton-dashboard
       name: tekton-dashboard
     spec:
+      nodeSelector:
+{{ toYaml .Values.nodeSelector.dashboard | indent 8 }}
+      serviceAccountName: tekton-dashboard
       containers:
         - name: tekton-dashboard
           image: '{{ .Values.images.dashboard.repository }}:{{ .Values.images.dashboard.tag }}'
@@ -40,4 +43,3 @@ spec:
               path: /readiness
               port: 9097
           resources: null
-      serviceAccountName: tekton-dashboard

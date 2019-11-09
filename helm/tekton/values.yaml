@@ -47,6 +47,11 @@ replicas:
   dashboardWebhook: 1
   pipeline: 1
   pipelineWebhook: 1
+nodeSelector:
+  dashboard: {}
+  dashboardWebhook: {}
+  pipeline: {}
+  pipelineWebhook: {}
 ingress: {}
 deploy:
   dashboard:

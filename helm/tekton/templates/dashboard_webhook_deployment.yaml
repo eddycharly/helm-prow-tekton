@@ -14,6 +14,9 @@ spec:
       labels:
         app: webhooks-extension
     spec:
+      nodeSelector:
+{{ toYaml .Values.nodeSelector.dashboardWebhook | indent 8 }}
+      serviceAccountName: tekton-webhooks-extension
       containers:
         - name: webhooks-extension
           image: '{{ .Values.images.dashboardWebhook.repository }}:{{ .Values.images.dashboardWebhook.tag }}'
@@ -41,4 +44,3 @@ spec:
             httpGet:
               path: /readiness
               port: 8080
-      serviceAccountName: tekton-webhooks-extension

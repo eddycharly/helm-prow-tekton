@@ -54,14 +54,14 @@ nodeSelector:
   pipelineWebhook: {}
 
 ingress:
-  # Enable ingress resource
+  # ingress.annotations -- Enable ingress resource
   enabled: false
 
   # ingress.annotations -- Ingress resource annotations
-  # annotations: {}
+  annotations: {}
 
-  # ingress.host -- Ingress resource host
-  # host: xxx.yyy.zzz
+  # ingress.host -- (string) Ingress resource host
+  host:
 
 deploy:
   dashboard:

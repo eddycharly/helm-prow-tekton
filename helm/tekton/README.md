@@ -28,7 +28,9 @@ Source code can be found [here](https://github.com/eddycharly/helm-prow-tekton/h
 | images.pipeline.tag | string | `"72a2bda21b5bc23550e94fdf7cee8a6e5bd82601f5d81a6237fc2b8c42321a59"` |  |
 | images.pipelineWebhook.repository | string | `"gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook@sha256"` |  |
 | images.pipelineWebhook.tag | string | `"1d6336f2748cb8e5c19b17191a54c6adbbc77e2d1c60818f93282ec482bb2957"` |  |
+| ingress.annotations | object | `{}` | Ingress resource annotations |
 | ingress.enabled | bool | `false` |  |
+| ingress.host | string | `nil` | Ingress resource host |
 | nodeSelector.dashboard | object | `{}` |  |
 | nodeSelector.dashboardWebhook | object | `{}` |  |
 | nodeSelector.pipeline | object | `{}` |  |

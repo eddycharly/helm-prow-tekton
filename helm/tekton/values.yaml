@@ -60,12 +60,7 @@ deploy:
     knativeService: false
 config:
   artifactBucket:
-    location: s3://tekton-storage-eu
-    bucket.service.account.secret.name: tekton-storage
-    bucket.service.account.secret.key: boto-config
-    bucket.service.account.field.name: BOTO_CONFIG
   artifactPvc:
-    size: 1Gi
   defaults:
     _example: |
       ################################

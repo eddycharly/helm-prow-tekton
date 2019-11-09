@@ -1,2 +1,11 @@
 name: tekton
 apiVersion: v1
+version: 0.8.0
+appVersion: 0.8.0
+home: https://github.com/eddycharly/helm-prow-tekton/helm/tekton
+keywords:
+  - helm
+  - tekton pipeline
+maintainers:
+  - name: eddycharly
+    email: charles.breteche@agriconomie.com
